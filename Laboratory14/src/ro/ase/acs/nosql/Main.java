@@ -12,6 +12,8 @@ public class Main {
 	public static void main(String[] args) {
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
 		MongoDatabase mongoDb = mongoClient.getDatabase("test");
+
+		//
 		
 		if(mongoDb.getCollection("employees") != null) {
 			mongoDb.getCollection("employees").drop();

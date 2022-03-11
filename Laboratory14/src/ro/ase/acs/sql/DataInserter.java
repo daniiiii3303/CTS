@@ -20,15 +20,19 @@ public class DataInserter implements YesSqlMethods<Connection> {
         statement.executeUpdate(SQL_INSERT);
         statement.close();
 
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_WITH_PARAMS);
-        preparedStatement.setInt(1, 2);
-        preparedStatement.setString(2, NAME);
-        preparedStatement.setString(3, CITY);
-        preparedStatement.setDouble(4, SALARY);
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_WITH_PARAMS);
+            preparedStatement.setInt(1, 2);
+            preparedStatement.setString(2, NAME);
+            preparedStatement.setString(3, CITY);
+            preparedStatement.setDouble(4, SALARY);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
 
-        connection.commit();
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return connection;
     }
